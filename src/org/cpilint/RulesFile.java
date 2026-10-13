@@ -32,6 +32,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 import org.cpilint.rules.CleartextBasicAuthNotAllowedRuleFactory;
+import org.cpilint.rules.CustomRuleFactory;
 import org.cpilint.rules.ClientCertSenderChannelAuthNotAllowedRuleFactory;
 import org.cpilint.rules.CsrfProtectionRequiredRuleFactory;
 import org.cpilint.rules.DuplicateResourcesNotAllowedRuleFactory;
@@ -88,6 +89,7 @@ public final class RulesFile {
 		ruleFactories.add(new DuplicateResourcesNotAllowedRuleFactory());
 		ruleFactories.add(new NamingConventionsRuleFactory());
 		ruleFactories.add(new UserRolesRuleFactory());
+		ruleFactories.add(new CustomRuleFactory());
 		// Load extension rule factories via Service Provider Interface (if any are present).
 		extensionRuleFactories = new ArrayList<>();
 		ServiceLoader<ExtensionRuleFactory> spiLoader = ServiceLoader.load(ExtensionRuleFactory.class);

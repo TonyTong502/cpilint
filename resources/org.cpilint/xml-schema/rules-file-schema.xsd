@@ -50,6 +50,19 @@
 			<xs:element name="naming" type="namingType" minOccurs="0" maxOccurs="unbounded"/> <!-- Unlike the other rules, the naming rule can occur multiple times. -->
 			<xs:element name="allowed-user-roles" type="allowedUserRolesType" minOccurs="0"/>
 			<xs:element name="disallowed-user-roles" type="disallowedUserRolesType" minOccurs="0"/>
+			<xs:element name="default-names-not-allowed-rule" type="excludedNamesRuleType" minOccurs="0"/>
+			<xs:element name="unused-parameters-rule" type="excludedNamesRuleType" minOccurs="0"/>
+			<xs:element name="allowed-headers-empty" type="includeExcludeRuleType" minOccurs="0"/>
+			<xs:element name="response-headers-allowed" type="includeExcludeRuleType" minOccurs="0"/>
+			<xs:element name="undeclared-data-type" type="baseRuleType" minOccurs="0"/>
+			<xs:element name="csrf-protection-required-with-exclude" type="includeExcludeRuleType" minOccurs="0"/>
+			<xs:element name="iflow-matches-name" type="iflowMatchesNameType" minOccurs="0"/>
+			<xs:element name="log-trace-level-enabled-rule" type="excludedNamesRuleType" minOccurs="0"/>
+			<xs:element name="disallowed-expressions" type="disallowedExpressionsType" minOccurs="0"/>
+			<xs:element name="disallowed-filter-xpath-property" type="disallowedExpressionsType" minOccurs="0"/>
+			<xs:element name="header-format" type="formatRuleType" minOccurs="0"/>
+			<xs:element name="property-format" type="formatRuleType" minOccurs="0"/>
+			<xs:element name="external-parameters-naming-convention" type="externalParameterNamingType" minOccurs="0"/>
 		</xs:all>
 		<!-- At least one rule must be present. -->
 		<xs:assert test="count(*) gt 0"/>
@@ -61,6 +74,58 @@
 		<xs:assert test="not(allowed-mapping-types and disallowed-mapping-types)"/>
 		<xs:assert test="not(allowed-java-archives and disallowed-java-archives)"/>
 		<xs:assert test="not(allowed-user-roles and disallowed-user-roles)"/>
+	</xs:complexType>
+
+	<xs:complexType name="excludedNamesRuleType">
+		<xs:sequence>
+			<xs:element name="exclude" type="nonEmptyString" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="includeExcludeRuleType">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="include" type="nonEmptyString"/>
+			<xs:element name="exclude" type="nonEmptyString"/>
+		</xs:choice>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
+		<xs:assert test="not(include and exclude)"/>
+	</xs:complexType>
+
+	<xs:complexType name="iflowMatchesNameType">
+		<xs:sequence>
+			<xs:element name="naming-pattern" type="nonEmptyString" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="disallowedExpressionsType">
+		<xs:sequence>
+			<xs:element name="disallow" type="nonEmptyString" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="formatRuleType">
+		<xs:sequence>
+			<xs:element name="exceptions" type="xs:string" minOccurs="0"/>
+			<xs:element name="rule" minOccurs="1" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="activationDate" type="nonEmptyString"/>
+						<xs:element name="ruleExpression" type="nonEmptyString"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
+	</xs:complexType>
+
+	<xs:complexType name="externalParameterNamingType">
+		<xs:sequence>
+			<xs:element name="naming-pattern" type="nonEmptyString"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="nonEmptyString" use="optional"/>
 	</xs:complexType>
 
 	<!-- If the extension-rules element is present, it must contain at least one element. However, these child elements are not validated further; hence the <xs:any> with processContents="skip". -->

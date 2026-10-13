@@ -1,0 +1,33 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug CPILint (rules XML and directory)",
+            "request": "launch",
+            "mainClass": "org.cpilint.CliClient",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "-rules",
+                "${input:rulesFile}",
+                "-directory",
+                "${input:iflowDirectory}"
+            ],
+            "console": "integratedTerminal"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "rulesFile",
+            "type": "promptString",
+            "description": "Path to the CPILint rules XML file, relative to the workspace or absolute",
+            "default": "<your_xml_rule_path>"
+        },
+        {
+            "id": "iflowDirectory",
+            "type": "promptString",
+            "description": "Directory containing the iFlow artifact files, relative to the workspace or absolute",
+            "default": "<your_iflow_directory>"
+        }
+    ]
+}
