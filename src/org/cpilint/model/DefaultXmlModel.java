@@ -455,6 +455,11 @@ final class DefaultXmlModel implements XmlModel {
 	}
 
 	@Override
+	public String xqueryForNamedProcessDirectSenderChannels() {
+		return JarResourceUtil.loadXqueryResource("named-process-direct-sender-channels.xquery");
+	}
+
+	@Override
 	public String xqueryForCleartextBasicAuthReceiverChannels() {
 		return JarResourceUtil.loadXqueryResource("cleartext-basic-auth-not-allowed.xquery");
 	}

@@ -28,6 +28,7 @@
 		<xs:all>
 			<xs:element name="cleartext-basic-auth-not-allowed" type="baseRuleType" minOccurs="0"/>
 			<xs:element name="matching-process-direct-channels-required" type="baseRuleType" minOccurs="0"/>
+			<xs:element name="process-direct-address-matches-iflow-name" type="baseRuleType" minOccurs="0"/>
 			<xs:element name="multi-condition-type-routers-not-allowed" type="baseRuleType" minOccurs="0"/>
 			<xs:element name="allowed-receiver-adapters" type="allowedReceiverAdaptersType" minOccurs="0"/>
 			<xs:element name="disallowed-receiver-adapters" type="disallowedReceiverAdaptersType" minOccurs="0"/>

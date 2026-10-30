@@ -43,6 +43,7 @@ import org.cpilint.rules.MappingTypesRuleFactory;
 import org.cpilint.rules.MatchingProcessDirectChannelsRequiredRuleFactory;
 import org.cpilint.rules.MultiConditionTypeRoutersNotAllowedRuleFactory;
 import org.cpilint.rules.NamingConventionsRuleFactory;
+import org.cpilint.rules.ProcessDirectAddressMatchesIflowNameRuleFactory;
 import org.cpilint.rules.ReceiverAdaptersRuleFactory;
 import org.cpilint.rules.Rule;
 import org.cpilint.rules.RuleFactory;
@@ -86,6 +87,7 @@ public final class RulesFile {
 		ruleFactories.add(new ClientCertSenderChannelAuthNotAllowedRuleFactory());
 		ruleFactories.add(new MultiConditionTypeRoutersNotAllowedRuleFactory());
 		ruleFactories.add(new MatchingProcessDirectChannelsRequiredRuleFactory());
+		ruleFactories.add(new ProcessDirectAddressMatchesIflowNameRuleFactory());
 		ruleFactories.add(new DuplicateResourcesNotAllowedRuleFactory());
 		ruleFactories.add(new NamingConventionsRuleFactory());
 		ruleFactories.add(new UserRolesRuleFactory());

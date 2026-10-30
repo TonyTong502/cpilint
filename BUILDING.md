@@ -10,6 +10,10 @@ mvn clean package
 
 Maven resolves the application and XML Schema 1.1 dependencies and creates the standard JAR artifact at `target/cpilint-1.1.0.jar`.
 
+The build runs the JUnit regression tests in `test/`. To run just the tests, use
+`mvn test`; to run only the ProcessDirect address-naming tests, use
+`mvn -Dtest=ProcessDirectAddressMatchesIflowNameRuleTest test`.
+
 `dist-files/samples/FerringRules.xml` includes the policy configuration supplied with the custom-rule repository. It retains the original rule element names and organization-specific configuration, with only `<design-guidelines-check/>` omitted because that rule calls SAP's separately configured Design Guidelines API.
 
 The project includes these 13 custom rule elements: `default-names-not-allowed-rule`, `unused-parameters-rule`, `allowed-headers-empty`, `response-headers-allowed`, `undeclared-data-type`, `csrf-protection-required-with-exclude`, `iflow-matches-name`, `log-trace-level-enabled-rule`, `disallowed-expressions`, `disallowed-filter-xpath-property`, `header-format`, `property-format`, and `external-parameters-naming-convention`.

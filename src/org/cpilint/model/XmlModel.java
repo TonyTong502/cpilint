@@ -59,6 +59,8 @@ public interface XmlModel {
 	public String xqueryForProcessDirectReceiverChannels();
 	
 	public String xqueryForProcessDirectSenderChannelAddresses();
+
+	public String xqueryForNamedProcessDirectSenderChannels();
 	
 	public String xqueryForCleartextBasicAuthReceiverChannels();
 
