@@ -10,6 +10,8 @@ mvn clean package
 
 Maven resolves the application and XML Schema 1.1 dependencies and creates the standard JAR artifact at `target/cpilint-1.1.0.jar`.
 
+Publishing a GitHub release triggers `.github/workflows/release.yml`, which builds the release tag with Java 17 and Maven and uploads the JAR as a release asset. This also applies to prereleases. Rerunning the workflow replaces an existing asset with the same filename.
+
 The build runs the JUnit regression tests in `test/`. To run just the tests, use
 `mvn test`; to run only the ProcessDirect address-naming tests, use
 `mvn -Dtest=ProcessDirectAddressMatchesIflowNameRuleTest test`.
